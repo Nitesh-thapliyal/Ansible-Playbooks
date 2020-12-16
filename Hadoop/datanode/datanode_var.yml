@@ -1,0 +1,6 @@
+master_ip: '192.168.0.103'
+ip_for_checking: '192.168.0.106'
+master_port: '9001'
+node: 'data'
+
+
