@@ -1,0 +1,27 @@
+- hosts: Backend
+  tasks:
+  - name: "Installing web Server"
+    package:
+      name: "httpd"
+
+  - copy:
+      dest: "/var/www/html/ip.php"
+      src: "/etc/ansible/Haproxy/ip.php"
+
+  - service: 
+      name: "httpd"
+      state: restarted
+
+- hosts: Frontend
+  tasks:
+  - name: "Installing Haproxy"
+    package:
+      name: "haproxy"
+
+  - template:
+       dest: "/etc/haproxy/haproxy.cfg.j2"
+       src: "/etc/ansible/Haproxy/haproxy.cfg.j2"
+
+  - service:    
+       name: "haproxy"
+       state: restarted       
